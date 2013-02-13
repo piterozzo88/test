@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" type="text/css" href="css/themes/iportogruaro.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.2.0.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/photoswipe.css" />
+        <script type="text/javascript" src="js/klass.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="js/jquery.ui.map.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+        <script type="text/javascript" src="js/code.photoswipe.jquery-3.0.5.min.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
+  		<script type="text/javascript" src="facebook_js_sdk.js"></script> 
+  		<!--<script type="text/javascript" src="js/googlemaps.js"></script>-->
+        <script type="text/javascript" src="js/index2.js"></script>        
+        <script type="text/javascript" src="js/auth.js"></script>
+        <script type="text/javascript" src="js/graph_api.js"></script>
+        <script type="text/javascript" src="js/requests.js"></script>
+        <script type="text/javascript" src="js/feed.js"></script>
+    </head>
+    <body>
+    	<div data-role="page" id="loading_screen">
+    		<div data-role="content" data-theme="a" class="body">
+    			
+    		</div>
+    		<div data-role="footer" data-theme="a" data-position="fixed">
+    			<h1>Progress: <span id="counter"></span>/<span id="total"></span></h1>
+    		</div>
+    	</div>
+        <div data-role="page" id="home_screen">
+        	<div data-role="header" data-theme="a" data-position="fixed">
+        		<h1>iPortogruaro</h1>
+        		<a href="#search_screen" data-icon="search" class="ui-btn-right">Cerca</a>
+        	</div>
+            <div data-role="content" data-theme="a" class="body">
+            	<ul data-role="listview" data-theme="a" class="list" data-inset="true">
+            		
+            	</ul>
+            </div>
+        </div>
+        
+        <div data-role="page" id="search_screen">
+        	<div data-role="header" data-theme="a" data-position="fixed">
+        		<a href="javascript:back();" data-icon="back" data-role="button">Indietro</a>
+        		<h1 id="category-title">Cerca</h1>
+        		<a href="javascript:map_pois();" data-icon="map" data-role="button" id="pois_map" style="display:none">Map</a>
+        	</div>
+            <div data-role="content" data-theme="a" class="body">
+            	<input type="search" name="search" id="search" value="" onchange="javascript:search();"/>
+            	<br/>
+				<ul data-role="listview" data-theme="a" class="list" data-inset="true">
+            		
+            	</ul>
+            </div>
+        </div>
+        
+        <div data-role="page" id="list_screen">
+        	<div data-role="header" data-theme="a" data-position="fixed">
+        		<a href="javascript:back();" data-icon="back" data-role="button">Indietro</a>
+        		<h1 id="category-title"></h1>
+        		<a href="javascript:map_pois();" data-icon="map" data-role="button" id="pois_map">Map</a>
+        	</div>
+            <div data-role="content" data-theme="a" class="body">	
+				<ul data-role="listview" data-theme="a" class="list" data-inset="true">
+            		
+            	</ul>
+            </div>
+        </div>
+        
+        <div data-role="page" id="detail_screen" class="ui-dialog-background">
+        	<div data-role="header" data-theme="a" data-position="fixed">
+        		<a href="javascript:history.back();" data-icon="back" data-role="button">Indietro</a>
+        		<h1 id="poi-title"></h1>
+        		<a href="javascript:checkLocation();" data-icon="map" data-role="button">Map</a>
+        	</div>
+            <div data-role="content" data-theme="a" class="body">
+				<div id="title"></div>
+				<div id="photo"></div>
+				<div id="description"></div>
+				<div id="address" onclick="checkLocation();"></div>
+				<div id="phone"></div>
+				<div id="website"></div>
+				<div id="mail"></div>
+				<div id="gallery"><a data-role="button" href="#gallery_screen">Gallery</a></div>
+				<div id="share"><a data-role="button" href="#share_popup" data-rel="popup" data-position-to="window" data-transition="pop">Share</a></div>
+            </div>
+            <div data-role="popup" id="share_popup">
+        		<div data-role="header" data-theme="a">
+        			<a href="#" data-rel="back" data-theme="a" data-icon="delete" class="ui-btn-left">Chiudi</a>
+        			<h1>Condividi</h1>
+        		</div>
+        		<div data-role="content" data-theme="a" class="body">
+        			<div id="fbshare">
+	        			<a data-role="button" data-theme="b" href="javascript:FBShare()">Facebook</a>
+	        		</div>
+        		</div>
+        	</div>
+        </div>
+        
+        <div data-role="page" id="gallery_screen">
+        	<div data-role="content" data-theme="a" class="body">
+        		<div class="gallery">
+        			
+        		</div>
+        	</div>
+        </div>
+        
+        <div data-role="page" id="map_screen">
+        	<div data-role="header" data-theme="a" data-position="fixed">
+        		<a href="javascript:mapBack();" data-icon="back" data-role="button">Indietro</a>
+        		<h1 id="map-title"></h1>
+        	</div>
+            <div data-role="content" data-theme="a" class="body">	
+				<div id="map_canvas" style="height:950px;">
+					
+				</div>
+            </div>
+        </div>
+    </body>
+</html>

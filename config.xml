@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+       Licensed to the Apache Software Foundation (ASF) under one
+       or more contributor license agreements.  See the NOTICE file
+       distributed with this work for additional information
+       regarding copyright ownership.  The ASF licenses this file
+       to you under the Apache License, Version 2.0 (the
+       "License"); you may not use this file except in compliance
+       with the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing,
+       software distributed under the License is distributed on an
+       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+       KIND, either express or implied.  See the License for the
+       specific language governing permissions and limitations
+       under the License.
+-->
+<cordova>
+    <!--
+    access elements control the Android whitelist.
+    Domains are assumed blocked unless set otherwise
+     -->
+
+    <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
+    <!-- <access origin="https://example.com" /> allow any secure requests to example.com -->
+    <!-- <access origin="https://example.com" subdomains="true" /> such as above, but including subdomains, such as www -->
+    <access origin="http://www.nerdforlife.it"/>
+
+    <log level="DEBUG"/>
+    <preference name="useBrowserHistory" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+<plugins>
+    <plugin name="App" value="org.apache.cordova.App"/>
+    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
+    <plugin name="Device" value="org.apache.cordova.Device"/>
+    <plugin name="File" value="org.apache.cordova.FileUtils"/>
+    <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
+    <plugin name="Notification" value="org.apache.cordova.Notification"/>
+    <plugin name="Storage" value="org.apache.cordova.Storage"/>
+    <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer"/>
+    <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+    <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser"/>
+    <plugin name="org.apache.cordova.facebook.Connect" value="org.apache.cordova.facebook.ConnectPlugin" />
+</plugins>
+</cordova>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.pitersoft.iportogruaro"
+        version   = "2.3.0">
+    <name>iPortogruaro</name>
+
+    <description>
+        iPortogruaro
+    </description>
+
+    <author href="http://www.facebook.com/piterozzo" email="pietro.carta88@gmail.com">
+        PhoneGap Team
+    </author>
+
+    <feature name="http://api.phonegap.com/1.0/device" />
+	<feature name="http://api.phonegap.com/1.0/file" />
+	<feature name="http://api.phonegap.com/1.0/geolocation" />
+	<feature name="http://api.phonegap.com/1.0/network" />
+
+    <preference name="phonegap-version" value="2.3.0" />
+    <preference name="orientation"      value="portrait" />
+    <preference name="target-device"    value="universal" />
+    <preference name="fullscreen"       value="false" />
+	<preference name="webviewbounce" 	value="true" />
+
+    <icon src="icon.png" />
+    <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
+    <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
+    <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
+    <icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:density="xhdpi" />
+    <icon src="res/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
+    <icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
+    <icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
+    <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
+    
+	<access origin="*" />
+	
+	<gap:plugin name="FacebookConnect">
+		<param name="APP_ID" value="531543496877279" />
+	</gap:plugin>
+	
+</widget>
